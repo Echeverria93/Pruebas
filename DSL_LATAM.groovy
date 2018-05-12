@@ -49,7 +49,7 @@ for (String item: Ambientes) {
           //  upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
         //}
     }
-    BUILD_JOB.addBUILD_WEB_JOB(BUILD, Project_Version, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage)
+    BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage)
 	
 
 
