@@ -28,7 +28,7 @@ String ant_home = "${ANT}"
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
 
-def result = result["${JDK}"]
+def result  = driver.findElement(By.id("${JDK}")) 
 
 println 'valor seleccionado'result
 
