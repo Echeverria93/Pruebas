@@ -17,7 +17,7 @@ def project_description = "${PROJECT_DESCRIPTION}"
 String Credential_SCM = "SVN_User"
 String branch_scm = "${BRANCH_SCM}"
 def Patch_Workspace = "${PATCH_WORKSPACE_JENKINS}"
-String  jdk_x = "${JDK}"
+def  jdk_x = "${JDK}"
 String Project_Version = "${PROJECT_VERSION}"
 String deploy_stage = "${DEPLOY_STAGE}"
 String propertiesFile = "${PROPERTIES_FILE}"
@@ -28,7 +28,6 @@ String ant_home = "${ANT}"
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
 
-print "Jdk Elejido : "+jdk_x
 
 folder('Latam' + '/' + Name_Proyect) {
     description('Ambientes ' + Name_Proyect)
@@ -48,14 +47,15 @@ for (String item: Ambientes) {
 } // Fin ciclo for
 
     // JOB BUILD 
-   // def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_BUILD') {
-     //   customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT')
-		//logRotator(1, 5, 1, 5)
-        //triggers {
-         //   upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
-        //}
-    //}
-    //BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home  )
+    def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_BUILD') {
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT')
+		jdk(Jdk_x)
+		logRotator(1, 5, 1, 5)
+        triggers {
+            upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
+        }
+    }
+    BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home  )
 	
 
 
