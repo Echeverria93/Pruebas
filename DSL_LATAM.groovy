@@ -20,7 +20,10 @@ def Patch_Workspace = "${PATCH_WORKSPACE_JENKINS}"
 def  jdk_x = "${JDK}"
 String Project_Version = "${PROJECT_VERSION}"
 String deploy_stage = "${DEPLOY_STAGE}"
-String propertiesFile = "${PROPERTIES_FILE}"
+String propertiesFile = "${PROPERTIES_FILE
+String fileBuild = "${FILE_BUILD}"
+String ant_home = "${ANT}"
+
 
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
@@ -52,7 +55,7 @@ for (String item: Ambientes) {
             upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
         }
     }
-    BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage)
+    BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home  )
 	
 
 
