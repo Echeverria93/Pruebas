@@ -1,10 +1,8 @@
 // importando clases de la carpeta utilities
-//import package
-//import config.config
+
 import utilities.GIT_JOB
 import utilities.BUILD_JOB
-//import utils.
-//import lib
+
 import hudson.model.*
 import java.io.File;
 import jenkins.model.Jenkins;
@@ -28,9 +26,6 @@ String ant_home = "${ANT}"
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
 
-def result  = driver.findElement(By.id("${JDK}")) 
-
-println 'valor seleccionado'result
 
 
 folder('Latam' + '/' + Name_Proyect) {
@@ -48,17 +43,23 @@ for (String item: Ambientes) {
     def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
     GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
 	
-} // Fin ciclo for
+--------------------------------------------------------------------------------------------------------------------------------------
 
-    // JOB BUILD 
-    def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_BUILD') {
-        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT')
+	    // JOB BUILD 
+    def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_BUILD') {
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_GIT')
 		logRotator(1, 5, 1, 5)
         triggers {
-            upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
+            upstream('Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
         }
     }
     BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home  )
+	
+---------------------------------------------------------------------------------------------------------------------------------------
+	
+} // Fin ciclo for
+
+
 	
 
 
