@@ -1,6 +1,5 @@
 // importando clases de la carpeta utilities
 import utilities.GIT_JOB
-import utilities.BUILD_JOB
 
 import hudson.model.*
 import java.io.File;
@@ -37,12 +36,6 @@ for (String item: Ambientes) {
     def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
     GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
 	
-	// JOB BUILD
-	/def Build = job('Latam' + '/' + project_name + '/' + item + '/' + project_name + '_BUILD') {
-	//  customWorkspace(patch_workspace + 'Latam' + '/' + project_name + '/' + item + '/' + project_name + '_GIT')
-	//}
-	//GIT_JOB.addBUILD_WEB_JOB(Build, Description_proyect, Credential_SCM, Url_Git, Environments)
-
 }
 
 
