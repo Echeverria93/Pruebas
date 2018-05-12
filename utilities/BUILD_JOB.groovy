@@ -20,8 +20,6 @@ public class BUILD_JOB implements Context {
     DEPLOY_STAGE= '''+deploy_stage+'''
     '''.stripIndent()
 			 
-			 job.with{
-			 jdk(jdk_x)
 			 steps {
 			     envInjectBuilder {
 			         propertiesFilePath(propertiesFile)
@@ -34,7 +32,7 @@ public class BUILD_JOB implements Context {
 			     }
 			 }
 
-			 }
+			 
 			 }
 			 
 			 
