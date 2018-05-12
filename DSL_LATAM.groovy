@@ -43,7 +43,7 @@ for (String item: Ambientes) {
     def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
     GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
 	
---------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------
 
 	    // JOB BUILD 
     def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_BUILD') {
@@ -55,7 +55,7 @@ for (String item: Ambientes) {
     }
     BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home  )
 	
----------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------
 	
 } // Fin ciclo for
 
