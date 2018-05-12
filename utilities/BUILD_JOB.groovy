@@ -20,7 +20,7 @@ public class BUILD_JOB implements Context {
     '''.stripIndent()
 			 
 			 logRotator(1, 5, 1, 5)
-			 jdk(jdk_x)
+			 jdk(Jdk_x)
 			 steps {
 			     envInjectBuilder {
 			         propertiesFilePath(propertiesFile)
