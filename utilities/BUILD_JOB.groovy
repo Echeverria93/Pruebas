@@ -13,13 +13,12 @@ public class BUILD_JOB implements Context {
 
 
 	static void addBUILD_WEB_JOB(def job, String Jdk_x, String propertiesFile, String Name_Proyect,String Project_Version, String deploy_stage){
-	         
+	          logRotator(1, 5, 1, 5)
 	def prop_stage_build ='''\
     PROJECT_NAME='''+Name_Proyect+'''-'''+Project_Version+'''
     DEPLOY_STAGE= '''+deploy_stage+'''
     '''.stripIndent()
 			 
-			 logRotator(1, 5, 1, 5)
 			 jdk(Jdk_x)
 			 steps {
 			     envInjectBuilder {
