@@ -28,7 +28,9 @@ String ant_home = "${ANT}"
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
 
-print "JDK :"+jdk_x
+def myList = ["Apple", "Banana", "Carrot"]
+def joinResult = myList.join()
+println 'valor seleccionado'joinResult
 
 
 folder('Latam' + '/' + Name_Proyect) {
