@@ -46,11 +46,11 @@ for (String item: Ambientes) {
 //--------------------------------------------------------------------------------------------------------------------------------------
 
 	    // JOB BUILD 
-    def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_BUILD') {
+    def BUILD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD') {
         customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_GIT')
 		logRotator(1, 5, 1, 5)
         triggers {
-            upstream('Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
+            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
         }
     }
     BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home  )
