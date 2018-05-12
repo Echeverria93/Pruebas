@@ -5,20 +5,20 @@ import javaposse.jobdsl.dsl.Context;
 
 public class BUILD_JOB implements Context {
     private String Project_version
-    private String Jdk_x
+    private def jdk_x
     private String propertiesFile
     private String Name_Proyect
     private String Project_Version
     private String deploy_stage
 
 
-	static void addBUILD_WEB_JOB(def job, String Jdk_x, String propertiesFile, String Name_Proyect,String Project_Version, String deploy_stage){
+	static void addBUILD_WEB_JOB(def job, def jdk_x, String propertiesFile, String Name_Proyect,String Project_Version, String deploy_stage){
 	def prop_stage_build ='''\
     PROJECT_NAME='''+Name_Proyect+'''-'''+Project_Version+'''
     DEPLOY_STAGE= '''+deploy_stage+'''
     '''.stripIndent()
 			 
-			 jdk(Jdk_x)
+			 jdk(jdk_x)
 			 steps {
 			     envInjectBuilder {
 			         propertiesFilePath(propertiesFile)
