@@ -28,6 +28,8 @@ String ant_home = "${ANT}"
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
 
+print "JDK :"+jdk_x
+
 
 folder('Latam' + '/' + Name_Proyect) {
     description('Ambientes ' + Name_Proyect)
@@ -49,7 +51,6 @@ for (String item: Ambientes) {
     // JOB BUILD 
     def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_BUILD') {
         customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT')
-		jdk(jdk_x)
 		logRotator(1, 5, 1, 5)
         triggers {
             upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
