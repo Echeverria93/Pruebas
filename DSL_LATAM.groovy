@@ -1,5 +1,6 @@
 // importando clases de la carpeta utilities
 import utilities.GIT_JOB
+import utilities.BUILD_JOB
 
 import hudson.model.*
 import java.io.File;
@@ -13,8 +14,11 @@ String Url_Git = "${URL_GIT}"
 def project_description = "${PROJECT_DESCRIPTION}"
 String Credential_SCM = "SVN_User"
 String branch_scm = "${BRANCH_SCM}"
-def patch_workspace = "${PATCH_WORKSPACE_JENKINS}"
+def Patch_Workspace = "${PATCH_WORKSPACE_JENKINS}"
 String  jdk_x = "${JDK}"
+String Project_Version = "${PROJECT_VERSION}"
+String deploy_stage = "${DEPLOY_STAGE}"
+String propertiesFile = "${PROPERTIES_FILE}"
 
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
@@ -36,7 +40,17 @@ for (String item: Ambientes) {
     def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
     GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
 	
-}
+} // Fin ciclo for
+
+    // JOB BUILD 
+    def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_BUILD') {
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + project_name + '_GIT')
+        //triggers {
+          //  upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
+        //}
+    }
+    BUILD_JOB.addBUILD_WEB_JOB(BUILD, Project_Version, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage)
+	
 
 
 
