@@ -28,7 +28,7 @@ String ant_home = "${ANT}"
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
 
-Object result = list.get("${JDK}");
+def result = result["${JDK}"]
 
 println 'valor seleccionado'result
 
