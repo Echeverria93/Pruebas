@@ -5,7 +5,7 @@ import javaposse.jobdsl.dsl.Context;
 
 public class BUILD_JOB implements Context {
     private String Project_version
-    private def Jdk_x
+    private String Jdk_x
     private String propertiesFile
     private String Name_Proyect
     private String Project_Version
