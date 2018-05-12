@@ -28,7 +28,7 @@ String ant_home = "${ANT}"
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
 
-
+print "Jdk Elejido : "jdk_x
 
 folder('Latam' + '/' + Name_Proyect) {
     description('Ambientes ' + Name_Proyect)
