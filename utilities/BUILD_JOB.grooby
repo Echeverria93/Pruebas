@@ -32,9 +32,6 @@ public class BUILD_JOB implements Context {
 			         antInstallation(ant_home)
 			     }
 			 }
-			 triggers {
-			     upstream('Latam' + '/' + project_name + '/' + 'Beta' + '/' + project_name + '_GIT', 'SUCCESS')
-			 }
 
 			 }
 			 

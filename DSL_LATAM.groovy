@@ -1,10 +1,12 @@
 // importando clases de la carpeta utilities
+//import package
+//import config.config
 import utilities.GIT_JOB
 import utilities.BUILD_JOB
-
+//import utils.
+//import lib
 import hudson.model.*
 import java.io.File;
-import java.util.ArrayList
 import jenkins.model.Jenkins;
 
 
@@ -44,10 +46,10 @@ for (String item: Ambientes) {
 
     // JOB BUILD 
     def BUILD = job('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_BUILD') {
-        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + project_name + '_GIT')
-        //triggers {
-          //  upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
-        //}
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT')
+        triggers {
+            upstream('Latam' + '/' + Name_Proyect + '/' + 'Beta' + '/' + Name_Proyect + '_GIT', 'SUCCESS')
+        }
     }
     BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage)
 	
