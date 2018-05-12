@@ -20,7 +20,7 @@ def Patch_Workspace = "${PATCH_WORKSPACE_JENKINS}"
 def  jdk_x = "${JDK}"
 String Project_Version = "${PROJECT_VERSION}"
 String deploy_stage = "${DEPLOY_STAGE}"
-String propertiesFile = "${PROPERTIES_FILE
+String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
