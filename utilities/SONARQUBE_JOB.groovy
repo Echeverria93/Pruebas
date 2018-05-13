@@ -13,8 +13,8 @@ static void addSONARQUBE_WEB_JOB(def job,String Name_Proyect, String Project_Ver
 
 def sonarProperties ='''\
  sonar.projectKey='''+Name_Proyect+'''
- sonar.projectName='''+Name_Proyect+'''-'''+project_version+'''
- sonar.projectVersion='''+project_version+''' 
+ sonar.projectName='''+Name_Proyect+'''-'''+Project_Version+'''
+ sonar.projectVersion='''+Project_Version+''' 
  sonar.sources=${WORKSPACE}
  sonar.exclusions=**/Scripts/**
  sonar.java.binaries=${WORKSPACE}/'''+Name_Proyect+'''-'''+Project_Version+'''/dist
