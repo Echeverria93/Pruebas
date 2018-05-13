@@ -22,10 +22,11 @@ String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
+def customFieldManager = ComponentAccessor.getCustomFieldManager()
 def cf = customFieldManager.getCustomFieldObject("${JDK}")
-def string = getCustomFieldValue(cf)
+def num = issue.getCustomFieldValue(cf)
 
-print "Jdk ***** :"+string
+print "Jdk ***** :"+num
 
 
 // Listas
