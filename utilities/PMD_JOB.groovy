@@ -63,7 +63,7 @@ DEPLOY_STAGE= '''+deploy_stage+'''
 
 
 static void addPMD_ROBOT(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile,String item, def Patch_Workspace, String correoJP){
-
+String correo
 def git_beta = Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item
  def PMD_OK='''\
 
