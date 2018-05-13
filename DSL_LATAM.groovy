@@ -166,7 +166,7 @@ folder('Latam' + '/' + Name_Proyect) {
                     upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
                 }
             }
-            PMD_JOB.addPMD_ROBOT(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile, item, correoJP, Patch_Workspace)
+            PMD_JOB.addPMD_WEB(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile)
 
         } // Fin ciclo for
 

@@ -18,7 +18,7 @@ public class PMD_JOB implements Context {
 	private def Patch_Workspace
 	
 
-static void addPMD_WEB(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile, String correoJP){
+static void addPMD_WEB(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile){
 
 	def prop_stage_build ='''\
 PROJECT_NAME='''+Name_Proyect+'''-'''+Project_Version+'''
@@ -62,56 +62,7 @@ DEPLOY_STAGE= '''+deploy_stage+'''
 }
 
 
-static void addPMD_ROBOT(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile,String item, def Patch_Workspace){
 
- def git_beta = Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item
- def shell_PMD_RobotB= '''\
- echo "Ejecutando  PMD 5.0"
- cd /var/jenkins_home/resources/REV_COD/pmd-5.0
- sh pmdCheck.sh "1" "'''+git_beta+'''/'''+Name_Proyect+'''_GIT" "'''+git_beta+'''" "'''+Name_Proyect+'''_GIT"
- '''.stripIndent()
- 
-  def PMD_OK='''\
-
-	Estimado,
-		Resultado PMD del proyecto '''+Name_Proyect+'''.
-	Atte. Equipo de calidad ZENTA.
-	Saludos!'''.stripIndent()
-
-			 job.with{
-			 jdk(jdk_x)
-
-  steps {
-              shell(shell_PMD_RobotB)
-          }
-
-          publishers {
-              extendedEmail {
-                  recipientList('')
-                  defaultSubject('')
-                  defaultContent('')
-                  attachmentPatterns('1_' + Name_Proyect + '_GIT-pmd.html')
-                  contentType('text/html')
-                  triggers {
-				  
-				  if (item =="Beta") {
-					    correo ="calidad@zentagroup.com"
-					} else {
-					    correo = correoJP
-					}
-                      success {
-                          subject('[Jenkins] PMD 5.0 ' + Name_Proyect)
-                          content(PMD_OK)
-                          recipientList(correo)
-                          attachmentPatterns('1_' + Name_Proyect + '_GIT-pmd.html')
-                      }
-
-                  }
-              }
-          }
-			 }
-
-}
 
 
 }
