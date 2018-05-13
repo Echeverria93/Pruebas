@@ -23,7 +23,7 @@ String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
 
-def epicTeam = epic.getCustomFieldValue("${JDK}")
+def epicTeam = issue.get("${JDK}"); 
 
 print "Jdk ***** :"+epicTeam
 
