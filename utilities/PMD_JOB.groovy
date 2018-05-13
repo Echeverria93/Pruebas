@@ -15,7 +15,7 @@ public class PMD_JOB implements Context {
 	private String fileBuild
 	private String correoJP
 	private String item
-	def patch_workspace = "${PATCH_WORKSPACE_JENKINS}"
+	
 
 static void addPMD_WEB(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile, String correoJP){
 
@@ -63,6 +63,7 @@ DEPLOY_STAGE= '''+deploy_stage+'''
 
 static void addPMD_ROBOT(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile,String item){
 
+def patch_workspace = "${PATCH_WORKSPACE_JENKINS}"
 def git_beta = patch_workspace + 'Latam' + '/' + Name_Proyect + '/' + item
  def shell_PMD_RobotB= '''\
  echo "Ejecutando  PMD 5.0"
