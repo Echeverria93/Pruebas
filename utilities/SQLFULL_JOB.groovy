@@ -20,7 +20,7 @@ private String intranet
 private String correoJP
 
 
-static void addSQLFULL_WEB_JOB(def job, String Name_Proyect, String Project_Version, String item, def tp, String user, String pass, String host, String puerto, String bd, String directorio, String intranet, String correoJP){
+static void addSQLFULL_WEB(def job, String Name_Proyect, String Project_Version, String item, def tp, String user, String pass, String host, String puerto, String bd, String directorio, String intranet, String correoJP){
 String correo
 
 def shell_sql_full='''\

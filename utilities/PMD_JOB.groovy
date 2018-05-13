@@ -14,7 +14,7 @@ public class PMD_JOB implements Context {
 	private String ant_home
 	private String fileBuild
 
-static void addPMD_WEB_JOB(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile){
+static void addPMD_WEB(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile){
 
 	def prop_stage_build ='''\
 PROJECT_NAME='''+Name_Proyect+'''-'''+Project_Version+'''

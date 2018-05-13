@@ -77,7 +77,7 @@ folder('Latam' + '/' + Name_Proyect) {
                     upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
                 }
             }
-            BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
+            BUILD_JOB.addBUILD_WEB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
 
             //---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ folder('Latam' + '/' + Name_Proyect) {
                     upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
                 }
             }
-            SONARQUBE_JOB.addSONARQUBE_WEB_JOB(SONARQUBE, Name_Proyect, Project_Version)
+            SONARQUBE_JOB.addSONARQUBE_WEB(SONARQUBE, Name_Proyect, Project_Version)
 
             //---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -101,7 +101,7 @@ folder('Latam' + '/' + Name_Proyect) {
                     upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
                 }
             }
-            PMD_JOB.addPMD_WEB_JOB(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile)
+            PMD_JOB.addPMD_WEB(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile)
 
             //---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ folder('Latam' + '/' + Name_Proyect) {
                     upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE', 'SUCCESS')
                 }
             }
-            SQLFULL_JOB.addSQLFULL_WEB_JOB(SQLFULL, Name_Proyect, Project_Version, item, tp, user, pass, host, puerto, bd, directorio, intranet, correoJP)
+            SQLFULL_JOB.addSQLFULL_WEB(SQLFULL, Name_Proyect, Project_Version, item, tp, user, pass, host, puerto, bd, directorio, intranet, correoJP)
 
 
 
@@ -125,7 +125,42 @@ folder('Latam' + '/' + Name_Proyect) {
     case "2":
         //--------------------------------------------------------------------------------------------
 
-        println("Robot")
+        println("Proyecto Robot")
+
+        for (String item: Ambientes) {
+
+            folder('Latam' + '/' + Name_Proyect + '/' + item) {
+                description('Ambiente ' + item)
+            }
+
+
+            //PIPELINE 
+            buildPipelineView('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PipeLine') {
+                selectedJob('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+            }
+			
+			//--------------------------------------------------------------------------------------------------------------------------------------
+
+            // JOB GIT 
+            def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
+            GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
+
+            //--------------------------------------------------------------------------------------------------------------------------------------
+            // JOB BUILD 
+            def BUILD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD') {
+                customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+                logRotator(1, 5, 1, 5)
+                triggers {
+                    upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
+                }
+            }
+            BUILD_JOB.addBUILD_WEB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
+
+            //---------------------------------------------------------------------------------------------------------------------------------------
+
+        } // Fin ciclo for
+
+
         break
 
     default:

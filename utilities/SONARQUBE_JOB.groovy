@@ -9,7 +9,7 @@ private String Project_Version
 private String Name_Proyect
 
 
-static void addSONARQUBE_WEB_JOB(def job,String Name_Proyect, String Project_Version ){
+static void addSONARQUBE_WEB(def job,String Name_Proyect, String Project_Version ){
 
 def sonarProperties ='''\
  sonar.projectKey='''+Name_Proyect+'''
