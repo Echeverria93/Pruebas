@@ -17,8 +17,10 @@ private String puerto
 private String bd
 private String directorio
 private String intranet
+private String correoJP
+private String correo
 
-static void addSQLFULL_WEB_JOB(def job, String Name_Proyect, String Project_Version, String item, def tp, String user, String pass, String host, String puerto, String bd, String directorio, String intranet){
+static void addSQLFULL_WEB_JOB(def job, String Name_Proyect, String Project_Version, String item, def tp, String user, String pass, String host, String puerto, String bd, String directorio, String intranet, String correoJP){
 
 def shell_sql_full='''\
 echo "Ejecutando  ApiSQL_Scanner.jar"
@@ -54,16 +56,22 @@ def sql_full_OK='''\
                     attachmentPatterns('Process_Query_' + Name_Proyect + '-' + Project_Version + '.pdf')
                     contentType('text/html')
                     triggers {
+					
+					if (item =="Beta") {
+					    correo ="calidad@zentagroup.com"
+					} else {
+					    correo =correoJP
+					}
                         success {
                             subject('[Jenkins] SQL Full_Scanner-' + Name_Proyect + '-' + Project_Version)
                             content(sql_full_OK)
-                            recipientList('calidad@zentagroup.com')
+                            recipientList(correo)
                             attachmentPatterns('Report_' + Name_Proyect + '-' + Project_Version + '.pdf, Report_not_process_' + Name_Proyect + '-' + Project_Version + '.pdf')
                         }
                         failure {
                             subject('[Jenkins] SQL Full_Scanner-' + Name_Proyect + '-' + Project_Version)
                             content(sql_full_error)
-                            recipientList('calidad@zentagroup.com')
+                            recipientList(correo)
                             attachmentPatterns('Report_not_process_' + Name_Proyect + '-' + Project_Version + '.pdf')
                         }
                     }
