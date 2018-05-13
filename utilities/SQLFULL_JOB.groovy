@@ -8,7 +8,7 @@ public class SQLFULL_JOB implements Context {
 private String Name_Proyect
 private String Project_Version
 private String item
-private String tp
+private def tp
 
 private String user
 private String pass
@@ -18,7 +18,7 @@ private String bd
 private String directorio
 private String intranet
 
-static void addSQLFULL_JOB_WEB_JOB(def job, String Name_Proyect, String Project_Version, String item, String tp, String user, String pass, String host, String puerto, String bd, String directorio, String intranet){
+static void addSQLFULL_JOB_WEB_JOB(def job, String Name_Proyect, String Project_Version, String item, def tp, String user, String pass, String host, String puerto, String bd, String directorio, String intranet){
 
 def shell_sql_full='''\
 echo "Ejecutando  ApiSQL_Scanner.jar"
