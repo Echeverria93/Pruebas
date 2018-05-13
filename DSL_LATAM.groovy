@@ -24,7 +24,7 @@ String ant_home = "${ANT}"
 
 
 
-print "Jdk ***** :"+num
+print "Jdk ***** :"+jdk_x 
 
 
 // Listas
