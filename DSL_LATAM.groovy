@@ -26,7 +26,7 @@ String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
-String user="${USER_DB}".trim()
+String user="${USER_DB}"
 String pass="${	KEY_DB}"
 String host="${HOST_DB}"
 String puerto="${PORT_DB}"
@@ -99,7 +99,7 @@ for (String item: Ambientes) {
     //---------------------------------------------------------------------------------------------------------------------------------------
 
     // JOB SQLFULL 
-    def SQLFULL = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
+    def SQLFULL = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SQLFULL') {
         customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
         logRotator(1, 5, 1, 5)
         triggers {
