@@ -44,73 +44,94 @@ folder('Latam' + '/' + Name_Proyect) {
 }
 
 
-for (String item: Ambientes) {
-
-    folder('Latam' + '/' + Name_Proyect + '/' + item) {
-        description('Ambiente ' + item)
-    }
+//--------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    //PIPELINE 
-    buildPipelineView('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PipeLine') {
-        selectedJob('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
-    }
+	switch (tp) {
 
-    // JOB GIT 
-    def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
-    GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
+    case "1":
+        println("Proyecto Web")
+        for (String item: Ambientes) {
 
-    //--------------------------------------------------------------------------------------------------------------------------------------
-
-    // JOB BUILD 
-    def BUILD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD') {
-        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
-        logRotator(1, 5, 1, 5)
-        triggers {
-            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
-        }
-    }
-    BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
-
-    //---------------------------------------------------------------------------------------------------------------------------------------
-
-    // JOB SONARQUBE 
-    def SONARQUBE = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE') {
-        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
-        logRotator(1, 5, 1, 5)
-        triggers {
-            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
-        }
-    }
-    SONARQUBE_JOB.addSONARQUBE_WEB_JOB(SONARQUBE, Name_Proyect, Project_Version)
-
-    //---------------------------------------------------------------------------------------------------------------------------------------
-
-    // JOB PMD 
-    def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
-        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
-        logRotator(1, 5, 1, 5)
-        triggers {
-            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
-        }
-    }
-    PMD_JOB.addPMD_WEB_JOB(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile)
-
-    //---------------------------------------------------------------------------------------------------------------------------------------
-
-    // JOB SQLFULL 
-    def SQLFULL = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SQLFULL') {
-        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
-        logRotator(1, 5, 1, 5)
-        triggers {
-            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE', 'SUCCESS')
-        }
-    }
-    SQLFULL_JOB.addSQLFULL_WEB_JOB(SQLFULL, Name_Proyect, Project_Version, item, tp, user, pass, host, puerto, bd, directorio, intranet, correoJP)
-	
+            folder('Latam' + '/' + Name_Proyect + '/' + item) {
+                description('Ambiente ' + item)
+            }
 
 
-} // Fin ciclo for
+            //PIPELINE 
+            buildPipelineView('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PipeLine') {
+                selectedJob('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+            }
+
+            // JOB GIT 
+            def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
+            GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
+
+            //--------------------------------------------------------------------------------------------------------------------------------------
+
+            // JOB BUILD 
+            def BUILD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD') {
+                customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+                logRotator(1, 5, 1, 5)
+                triggers {
+                    upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
+                }
+            }
+            BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
+
+            //---------------------------------------------------------------------------------------------------------------------------------------
+
+            // JOB SONARQUBE 
+            def SONARQUBE = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE') {
+                customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+                logRotator(1, 5, 1, 5)
+                triggers {
+                    upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
+                }
+            }
+            SONARQUBE_JOB.addSONARQUBE_WEB_JOB(SONARQUBE, Name_Proyect, Project_Version)
+
+            //---------------------------------------------------------------------------------------------------------------------------------------
+
+            // JOB PMD 
+            def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
+                customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+                logRotator(1, 5, 1, 5)
+                triggers {
+                    upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
+                }
+            }
+            PMD_JOB.addPMD_WEB_JOB(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile)
+
+            //---------------------------------------------------------------------------------------------------------------------------------------
+
+            // JOB SQLFULL 
+            def SQLFULL = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SQLFULL') {
+                customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+                logRotator(1, 5, 1, 5)
+                triggers {
+                    upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE', 'SUCCESS')
+                }
+            }
+            SQLFULL_JOB.addSQLFULL_WEB_JOB(SQLFULL, Name_Proyect, Project_Version, item, tp, user, pass, host, puerto, bd, directorio, intranet, correoJP)
+
+
+
+        } // Fin ciclo for
+
+        break
+
+
+    case "2":
+        //--------------------------------------------------------------------------------------------
+
+        println("Robot")
+        break
+
+    default:
+        println("Valor no Encontrado")
+        break
+}
 
 
 
