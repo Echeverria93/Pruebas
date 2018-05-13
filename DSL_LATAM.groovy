@@ -22,11 +22,10 @@ String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
-private static final JComboBox FIND_FIELD = new JComboBox();
 
-def jdk_x = FIND_FIELD.getSelectedItem("${JDK}");
+def epicTeam = epic.getCustomFieldValue("${JDK}")
 
-print "Jdk ***** :"+jdk_x
+print "Jdk ***** :"+epicTeam
 
 
 // Listas
