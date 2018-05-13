@@ -38,7 +38,7 @@ DEPLOY_STAGE= '''+deploy_stage+'''
 			 }
 			 
 			 
-			 	static void addBUILD_WEB_JOB(def job, def jdk_x, String propertiesFile, String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home){
+			 	static void addBUILD_ROBOT(def job, def jdk_x, String propertiesFile, String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home){
 	def prop_stage_build ='''\
 PROJECT_NAME='''+Name_Proyect+'''-'''+Project_Version+'''
 DEPLOY_STAGE= '''+deploy_stage+'''
@@ -46,17 +46,12 @@ DEPLOY_STAGE= '''+deploy_stage+'''
 			 
 			 job.with{
 			 jdk(jdk_x)
-			 steps {
-			     envInjectBuilder {
-			         propertiesFilePath(propertiesFile)
-			         propertiesContent(prop_stage_build)
-			     }
-			     ant {
-			         target('build')
-			         buildFile(fileBuild)
-			         antInstallation(ant_home)
-			     }
-			 }
+		             steps {
+
+                 ant {
+                     antInstallation(ant_home)
+                 }
+             }
 
 			 }
 			 }
