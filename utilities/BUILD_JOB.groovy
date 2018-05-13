@@ -16,9 +16,9 @@ public class BUILD_JOB implements Context {
 
 	static void addBUILD_WEB_JOB(def job, def jdk_x, String propertiesFile, String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, ant_home){
 	def prop_stage_build ='''\
-    PROJECT_NAME='''+Name_Proyect+'''-'''+Project_Version+'''
-    DEPLOY_STAGE= '''+deploy_stage+'''
-    '''.stripIndent()
+PROJECT_NAME='''+Name_Proyect+'''-'''+Project_Version+'''
+DEPLOY_STAGE= '''+deploy_stage+'''
+'''.stripIndent()
 			 
 			 job.with{
 			 jdk(jdk_x)

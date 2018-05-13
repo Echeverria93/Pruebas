@@ -2,6 +2,7 @@
 
 import utilities.GIT_JOB
 import utilities.BUILD_JOB
+import utilities.SONARQUBE_JOB
 
 import hudson.model.*
 import java.io.File;
@@ -61,6 +62,19 @@ for (String item: Ambientes) {
     BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
 
     //---------------------------------------------------------------------------------------------------------------------------------------
+	
+	    // JOB SONARQUBE 
+    def SONARQUBE = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE') {
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_GIT')
+        logRotator(1, 5, 1, 5)
+        triggers {
+            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '__BUILD', 'SUCCESS')
+        }
+    }
+    SONARQUBE_JOB.addSONARQUBE_WEB_JOB(SONARQUBE, Name_Proyect, Project_Version)
+	
+	
+	
 
 } // Fin ciclo for
 
