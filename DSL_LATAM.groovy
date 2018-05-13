@@ -39,12 +39,6 @@ String intranet="${INTRANET_NAME}"
 def Ambientes = ["Beta","Desarrollo"]
 
 
-	Validaciones Men = new Validaciones() 
-	
-	Men.Mensaje()
-
-
-
 folder('Latam' + '/' + Name_Proyect) {
     description('Ambientes ' + Name_Proyect)
 }
