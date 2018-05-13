@@ -115,7 +115,7 @@ for (String item: Ambientes) {
 } // Fin ciclo for
 
 
-	def MenC=new Validaciones() 
+	def Men=new Validaciones() 
 	
 	Men.Mensaje()
 
