@@ -84,7 +84,7 @@ for (String item: Ambientes) {
             upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
         }
     }
-    PMD_JOB.addPMD_WEB_JOB(PMD, jdk_x fileBuild, ant_home, propertiesFile)
+    PMD_JOB.addPMD_WEB_JOB(PMD, jdk_x, fileBuild, ant_home, propertiesFile)
 	
 	
 	
