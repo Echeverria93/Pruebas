@@ -5,8 +5,8 @@ import java.io.File;
 import jenkins.model.Jenkins;
 
 
-def hola
-Validaciones.addMensaje(hola)
+def prueba = new Validaciones()
+prueba.addMensaje()
 
 
  
