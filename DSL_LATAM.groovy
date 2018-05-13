@@ -5,7 +5,6 @@ import utilities.BUILD_JOB
 import utilities.SONARQUBE_JOB
 import utilities.PMD_JOB
 import utilities.SQLFULL_JOB
-import utilities.Validaciones
 
 import hudson.model.*
 import java.io.File;
