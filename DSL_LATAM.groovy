@@ -40,7 +40,7 @@ String intranet="${INTRANET_NAME}"
 def Ambientes = ["Beta","Desarrollo"]
 
 
-	def Men=new Validaciones() 
+	Validaciones Men = new Validaciones() 
 	
 	Men.Mensaje()
 
