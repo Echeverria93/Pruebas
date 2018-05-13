@@ -22,11 +22,6 @@ String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
-
-
-print "Jdk ***** :"+jdk_x 
-
-
 // Listas
 def Ambientes = ["Beta","Desarrollo"]
 
@@ -40,28 +35,36 @@ folder('Latam' + '/' + Name_Proyect) {
 for (String item: Ambientes) {
 
     folder('Latam' + '/' + Name_Proyect + '/' + item) {
-        description('Ambiente '+item)
+        description('Ambiente ' + item)
+    }
+
+
+    //PIPELINE 
+    buildPipelineView('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PipeLine') {
+        selectedJob('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
     }
 
     // JOB GIT 
     def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
     GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
-	
-//--------------------------------------------------------------------------------------------------------------------------------------
 
-	    // JOB BUILD 
+    //--------------------------------------------------------------------------------------------------------------------------------------
+
+    // JOB BUILD 
     def BUILD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD') {
         customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_GIT')
-		logRotator(1, 5, 1, 5)
+        logRotator(1, 5, 1, 5)
         triggers {
             upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
         }
     }
-    BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home  )
-	
-//---------------------------------------------------------------------------------------------------------------------------------------
-	
+    BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
+
+    //---------------------------------------------------------------------------------------------------------------------------------------
+
 } // Fin ciclo for
+
+
 
 
 	
