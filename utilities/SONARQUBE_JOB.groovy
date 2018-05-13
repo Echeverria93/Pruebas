@@ -17,7 +17,7 @@ def sonarProperties ='''\
  sonar.projectVersion='''+project_version+''' 
  sonar.sources=${WORKSPACE}
  sonar.exclusions=**/Scripts/**
- sonar.java.binaries=${WORKSPACE}/'''+Name_Proyect+'''-'''+project_version+'''/dist
+ sonar.java.binaries=${WORKSPACE}/'''+Name_Proyect+'''-'''+Project_Version+'''/dist
  sonar.language=java
  '''.stripIndent()
 
