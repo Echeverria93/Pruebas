@@ -21,7 +21,7 @@ public class BUILD_JOB implements Context {
     '''.stripIndent()
 			 
 			 job.with{
-			 jdk('JAVA_HOME')
+			 jdk(jdk_x)
 			 steps {
 			     envInjectBuilder {
 			         propertiesFilePath(propertiesFile)
