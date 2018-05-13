@@ -53,7 +53,7 @@ for (String item: Ambientes) {
 
     // JOB BUILD 
     def BUILD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD') {
-        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_GIT')
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
         logRotator(1, 5, 1, 5)
         triggers {
             upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
@@ -65,10 +65,10 @@ for (String item: Ambientes) {
 	
 	    // JOB SONARQUBE 
     def SONARQUBE = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE') {
-        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + 'item' + '/' + Name_Proyect + '_GIT')
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
         logRotator(1, 5, 1, 5)
         triggers {
-            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '__BUILD', 'SUCCESS')
+            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
         }
     }
     SONARQUBE_JOB.addSONARQUBE_WEB_JOB(SONARQUBE, Name_Proyect, Project_Version)
