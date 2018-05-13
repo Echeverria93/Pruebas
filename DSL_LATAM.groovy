@@ -77,14 +77,14 @@ for (String item: Ambientes) {
 	    //---------------------------------------------------------------------------------------------------------------------------------------
 	
 	    // JOB PMD 
-    def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE') {
+    def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
         customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
         logRotator(1, 5, 1, 5)
         triggers {
             upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
         }
     }
-    PMD_JOB.addPMD_WEB_JOB(PMD, fileBuild, ant_home, propertiesFile)
+    PMD_JOB.addPMD_WEB_JOB(PMD, jdk_x fileBuild, ant_home, propertiesFile)
 	
 	
 	

@@ -8,11 +8,12 @@ public class PMD_JOB implements Context {
     private String propertiesFile
 	private String ant_home
 	private String fileBuild
+	 private def jdk_x
 
-static void addPMD_WEB_JOB(def job,String fileBuild, String ant_home, String propertiesFile){
+static void addPMD_WEB_JOB(def job, def jdk_x, String fileBuild, String ant_home, String propertiesFile){
 
 			 job.with{
-			 jdk('JAVA_HOME')
+			 jdk(jdk_x)
 
 	            steps {
 	                envInjectBuilder {
