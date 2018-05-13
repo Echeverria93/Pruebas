@@ -6,7 +6,7 @@ import javaposse.jobdsl.dsl.Context;
 public class Validaciones implements Context {
 
 
-static void Mensaje(){
+static void addMensaje(){
 
 println "Mi PC portatil:"
 
