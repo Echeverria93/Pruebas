@@ -8,7 +8,7 @@ public class SQLFULL_JOB implements Context {
 private String Name_Proyect
 private String Project_Version
 private String item
-private def tp
+//private def tp
 
 private String user
 private String pass
@@ -18,12 +18,12 @@ private String bd
 private String directorio
 private String intranet
 
-static void addSQLFULL_JOB_WEB_JOB(def job, String Name_Proyect, String Project_Version, String item, def tp, String user, String pass, String host, String puerto, String bd, String directorio, String intranet){
+static void addSQLFULL_JOB_WEB_JOB(def job, String Name_Proyect, String Project_Version, String item, String user, String pass, String host, String puerto, String bd, String directorio, String intranet){
 
 def shell_sql_full='''\
 echo "Ejecutando  ApiSQL_Scanner.jar"
 cd /var/jenkins_home/resources/ApiSQL_Scanner
-java -jar ApiSQL_Scanner.jar "'''+Name_Proyect+'''-'''+Project_Version+'''" "'''+Name_Proyect+'''/'''+item+'''/'''+Name_Proyect+'''_GIT" "'''+tp+'''" "'''+user+'''" "'''+pass+'''" "'''+host+'''" "'''+puerto+'''" "'''+bd+'''" "'''+directorio+'''" "'''+intranet+'''"
+java -jar ApiSQL_Scanner.jar "'''+Name_Proyect+'''-'''+Project_Version+'''" "'''+Name_Proyect+'''/'''+item+'''/'''+Name_Proyect+'''_GIT" "'''1'''" "'''+user+'''" "'''+pass+'''" "'''+host+'''" "'''+puerto+'''" "'''+bd+'''" "'''+directorio+'''" "'''+intranet+'''"
 '''.stripIndent()
 
 			 job.with{

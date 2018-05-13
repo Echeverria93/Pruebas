@@ -19,7 +19,7 @@ String Credential_SCM = "SVN_User"
 String branch_scm = "${BRANCH_SCM}"
 def Patch_Workspace = "${PATCH_WORKSPACE_JENKINS}"
 def jdk_x = "${TYPE_JDK}"
-def tp = "${TYPE_PROJECT}"
+def tp ="${TYPE_PROJECT}"
 String Project_Version = "${PROJECT_VERSION}"
 String deploy_stage = "${DEPLOY_STAGE}"
 String propertiesFile = "${PROPERTIES_FILE}"
@@ -106,7 +106,7 @@ for (String item: Ambientes) {
             upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE', 'SUCCESS')
         }
     }
-    SQLFULL_JOB.addSQLFULL_WEB_JOB(SQLFULL, Name_Proyect, Project_Version, item, tp, user, pass, host, puerto, bd, directorio, intranet)
+    SQLFULL_JOB.addSQLFULL_WEB_JOB(SQLFULL, Name_Proyect, Project_Version, item, user, pass, host, puerto, bd, directorio, intranet)
 	
 	
 	
