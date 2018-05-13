@@ -22,10 +22,10 @@ String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
+def cf = customFieldManager.getCustomFieldObject("${JDK}")
+def string = getCustomFieldValue(cf)
 
-def epicTeam = igetCustomFieldValue("${JDK}")
-
-print "Jdk ***** :"+epicTeam
+print "Jdk ***** :"+string
 
 
 // Listas
