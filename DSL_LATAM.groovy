@@ -3,6 +3,7 @@
 import utilities.GIT_JOB
 import utilities.BUILD_JOB
 import utilities.SONARQUBE_JOB
+import utilities.PMD_JOB
 
 import hudson.model.*
 import java.io.File;
@@ -24,7 +25,7 @@ String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
 // Listas
-def Ambientes = ["Beta","Desarrollo"]
+def Ambientes = ["Beta","Desarrollo","A","B","C","D","E","F","G","H","I","J"]
 
 
 
@@ -72,6 +73,18 @@ for (String item: Ambientes) {
         }
     }
     SONARQUBE_JOB.addSONARQUBE_WEB_JOB(SONARQUBE, Name_Proyect, Project_Version)
+	
+	    //---------------------------------------------------------------------------------------------------------------------------------------
+	
+	    // JOB PMD 
+    def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE') {
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+        logRotator(1, 5, 1, 5)
+        triggers {
+            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
+        }
+    }
+    PMD_JOB.addPMD_WEB_JOB(PMD, fileBuild, ant_home, propertiesFile)
 	
 	
 	
