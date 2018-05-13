@@ -27,7 +27,7 @@ String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 String correoJP="${EMAIL_RESPONSABLE}"
 
-String user="${USER_DB}".trim()
+String user="${USER_DB}"
 String pass="${	KEY_DB}"
 String host="${HOST_DB}"
 String puerto="${PORT_DB}"
