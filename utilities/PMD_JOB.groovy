@@ -64,7 +64,7 @@ DEPLOY_STAGE= '''+deploy_stage+'''
 
 static void addPMD_ROBOT(def job, def jdk_x,String Name_Proyect,String Project_Version, String deploy_stage, String fileBuild, String ant_home, String propertiesFile,String item, def Patch_Workspace){
 
-def git_beta = Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item
+ def git_beta = Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item
  def shell_PMD_RobotB= '''\
  echo "Ejecutando  PMD 5.0"
  cd /var/jenkins_home/resources/REV_COD/pmd-5.0

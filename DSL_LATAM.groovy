@@ -154,9 +154,19 @@ folder('Latam' + '/' + Name_Proyect) {
                     upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
                 }
             }
-            BUILD_JOB.addBUILD_ROBOT(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, item, correoJP, Patch_Workspace)
+            BUILD_JOB.addBUILD_ROBOT(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
 
             //---------------------------------------------------------------------------------------------------------------------------------------
+			
+            // JOB PMD 
+            def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
+                customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+                logRotator(1, 5, 1, 5)
+                triggers {
+                    upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
+                }
+            }
+            PMD_JOB.addPMD_ROBOT(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile, item, correoJP, Patch_Workspace)
 
         } // Fin ciclo for
 
