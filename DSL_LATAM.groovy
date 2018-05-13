@@ -15,18 +15,16 @@ def project_description = "${PROJECT_DESCRIPTION}"
 String Credential_SCM = "SVN_User"
 String branch_scm = "${BRANCH_SCM}"
 def Patch_Workspace = "${PATCH_WORKSPACE_JENKINS}"
-//def jdk_x = "${JDK}"
+def jdk_x = "${JDK}"
 String Project_Version = "${PROJECT_VERSION}"
 String deploy_stage = "${DEPLOY_STAGE}"
 String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
-def customFieldManager = ComponentAccessor.getCustomFieldManager()
-def cf = customFieldManager.getCustomFieldObject("${JDK}")
-def num = issue.getCustomFieldValue(cf)
 
-print "Jdk ***** :"+num
+
+print "Jdk ***** :"+jdk_x
 
 
 // Listas
