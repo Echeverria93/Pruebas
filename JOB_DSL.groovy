@@ -8,6 +8,11 @@ import jenkins.model.Jenkins;
 
 Validaciones.addMensaje()
 
+def hola={println("Hola desde un closure")}
+ 
+//invocar closure "hola"
+hola()
+
 
 
 
