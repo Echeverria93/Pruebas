@@ -15,12 +15,18 @@ def project_description = "${PROJECT_DESCRIPTION}"
 String Credential_SCM = "SVN_User"
 String branch_scm = "${BRANCH_SCM}"
 def Patch_Workspace = "${PATCH_WORKSPACE_JENKINS}"
-def jdk_x = "${JDK}"
+//def jdk_x = "${JDK}"
 String Project_Version = "${PROJECT_VERSION}"
 String deploy_stage = "${DEPLOY_STAGE}"
 String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
+
+private static final JComboBox FIND_FIELD = new JComboBox();
+
+def jdk_x = FIND_FIELD.getSelectedItem("${JDK}");
+
+print "Jdk ***** :"+jdk_x
 
 
 // Listas
