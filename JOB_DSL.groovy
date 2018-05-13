@@ -5,13 +5,12 @@ import java.io.File;
 import jenkins.model.Jenkins;
 
 
+def hola
+Validaciones.addMensaje(hola)
 
-Validaciones.addMensaje()
 
-def hola={println("Hola desde un closure")}
  
-//invocar closure "hola"
-hola()
+
 
 
 
