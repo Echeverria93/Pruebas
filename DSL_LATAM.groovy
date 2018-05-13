@@ -4,6 +4,7 @@ import utilities.GIT_JOB
 import utilities.BUILD_JOB
 import utilities.SONARQUBE_JOB
 import utilities.PMD_JOB
+import utilities.SQLFULL_JOB
 
 import hudson.model.*
 import java.io.File;
@@ -18,14 +19,23 @@ String Credential_SCM = "SVN_User"
 String branch_scm = "${BRANCH_SCM}"
 def Patch_Workspace = "${PATCH_WORKSPACE_JENKINS}"
 def jdk_x = "${TYPE_JDK}"
+def tp = "${TYPE_PROJECT}"
 String Project_Version = "${PROJECT_VERSION}"
 String deploy_stage = "${DEPLOY_STAGE}"
 String propertiesFile = "${PROPERTIES_FILE}"
 String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 
+String user="${USER_DB}".trim()
+String pass="${	KEY_DB}"
+String host="${HOST_DB}"
+String puerto="${PORT_DB}"
+String bd="${SSID_DB}"
+String directorio="${ROBOT_DIRECTORY}"
+String intranet="${INTRANET_NAME}"
+
 // Listas
-def Ambientes = ["Beta","Desarrollo","A","B","C","D","E","F","G","H","I","J"]
+def Ambientes = ["Beta","Desarrollo"]
 
 
 
@@ -63,8 +73,8 @@ for (String item: Ambientes) {
     BUILD_JOB.addBUILD_WEB_JOB(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
 
     //---------------------------------------------------------------------------------------------------------------------------------------
-	
-	    // JOB SONARQUBE 
+
+    // JOB SONARQUBE 
     def SONARQUBE = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE') {
         customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
         logRotator(1, 5, 1, 5)
@@ -73,10 +83,10 @@ for (String item: Ambientes) {
         }
     }
     SONARQUBE_JOB.addSONARQUBE_WEB_JOB(SONARQUBE, Name_Proyect, Project_Version)
-	
-	    //---------------------------------------------------------------------------------------------------------------------------------------
-	
-	    // JOB PMD 
+
+    //---------------------------------------------------------------------------------------------------------------------------------------
+
+    // JOB PMD 
     def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
         customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
         logRotator(1, 5, 1, 5)
@@ -85,6 +95,18 @@ for (String item: Ambientes) {
         }
     }
     PMD_JOB.addPMD_WEB_JOB(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile)
+
+    //---------------------------------------------------------------------------------------------------------------------------------------
+
+    // JOB SQLFULL 
+    def SQLFULL = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
+        customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+        logRotator(1, 5, 1, 5)
+        triggers {
+            upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE', 'SUCCESS')
+        }
+    }
+    SQLFULL_JOB.addSQLFULL_WEB_JOB(SQLFULL, Name_Proyect, Project_Version, item, tp, user, pass, host, puerto, bd, directorio, intranet)
 	
 	
 	
