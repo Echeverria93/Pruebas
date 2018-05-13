@@ -72,7 +72,7 @@ def git_beta = Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item
 	Atte. Equipo de calidad ZENTA.
 	Saludos!'''.stripIndent()
 	
-	 def shell_PMD_RobotB= '''\
+	 def shell_PMD_Robot= '''\
  echo "Ejecutando  PMD 5.0"
  cd /var/jenkins_home/resources/REV_COD/pmd-5.0
  sh pmdCheck.sh "1" "'''+git_beta+'''/'''+Name_Proyect+'''_GIT" "'''+git_beta+'''" "'''+Name_Proyect+'''_GIT"
@@ -82,7 +82,7 @@ def git_beta = Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item
 			 jdk('JAVA_HOME')
 
 	            steps {
-	           shell(shell_PMD_RobotD)
+	           shell(shell_PMD_Robot)
 	            }
 				
 
