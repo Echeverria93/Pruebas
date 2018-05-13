@@ -5,6 +5,7 @@ import utilities.BUILD_JOB
 import utilities.SONARQUBE_JOB
 import utilities.PMD_JOB
 import utilities.SQLFULL_JOB
+import utilities.Validaciones
 
 import hudson.model.*
 import java.io.File;
@@ -12,7 +13,7 @@ import jenkins.model.Jenkins;
 
 
 // Variables 
-String Name_Proyect = "${NAME_PROYECT}"
+String Name_Proyect = "${NAME_PROYECT}".trim()
 String Url_Git = "${URL_GIT}"
 def project_description = "${PROJECT_DESCRIPTION}"
 String Credential_SCM = "SVN_User"
@@ -27,12 +28,12 @@ String fileBuild = "${FILE_BUILD}"
 String ant_home = "${ANT}"
 String correoJP="${EMAIL_RESPONSABLE}"
 
-String user="${USER_DB}"
-String pass="${	KEY_DB}"
-String host="${HOST_DB}"
-String puerto="${PORT_DB}"
-String bd="${SSID_DB}"
-String directorio="${ROBOT_DIRECTORY}"
+String user="${USER_DB}".trim()
+String pass="${	KEY_DB}".trim()
+String host="${HOST_DB}".trim()
+String puerto="${PORT_DB}".trim()
+String bd="${SSID_DB}".trim()
+String directorio="${ROBOT_DIRECTORY}".trim()
 String intranet="${INTRANET_NAME}"
 
 // Listas
@@ -109,10 +110,14 @@ for (String item: Ambientes) {
     }
     SQLFULL_JOB.addSQLFULL_WEB_JOB(SQLFULL, Name_Proyect, Project_Version, item, tp, user, pass, host, puerto, bd, directorio, intranet, correoJP)
 	
-	
-	
+
 
 } // Fin ciclo for
+
+
+	Validaciones Men = new Validaciones();
+	
+	Men.Mensaje()
 
 
 
