@@ -40,6 +40,11 @@ String intranet="${INTRANET_NAME}"
 def Ambientes = ["Beta","Desarrollo"]
 
 
+	def Men=new Validaciones() 
+	
+	Men.Mensaje()
+
+
 
 folder('Latam' + '/' + Name_Proyect) {
     description('Ambientes ' + Name_Proyect)
@@ -115,9 +120,7 @@ for (String item: Ambientes) {
 } // Fin ciclo for
 
 
-	def Men=new Validaciones() 
-	
-	Men.Mensaje()
+
 
 
 

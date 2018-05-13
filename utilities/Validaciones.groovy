@@ -8,7 +8,7 @@ public class Validaciones implements Context {
 
 static void Mensaje(){
 
-print "Prueba de mensajes"
+println "Mi PC portatil:"
 
 }
 
