@@ -154,7 +154,7 @@ folder('Latam' + '/' + Name_Proyect) {
                     upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
                 }
             }
-            BUILD_JOB.addBUILD_ROBOT(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
+            BUILD_JOB.addBUILD_ROBOT(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, item, correoJP)
 
             //---------------------------------------------------------------------------------------------------------------------------------------
 
