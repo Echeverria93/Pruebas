@@ -98,6 +98,14 @@ for (String item: Ambientes) {
 
     //---------------------------------------------------------------------------------------------------------------------------------------
 
+
+	
+	
+	
+
+} // Fin ciclo for
+
+
     // JOB SQLFULL 
     def SQLFULL = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SQLFULL') {
         customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
@@ -107,11 +115,6 @@ for (String item: Ambientes) {
         }
     }
     SQLFULL_JOB.addSQLFULL_WEB_JOB(SQLFULL, Name_Proyect, Project_Version, item, user, pass, host, puerto, bd, directorio, intranet)
-	
-	
-	
-
-} // Fin ciclo for
 
 
 
