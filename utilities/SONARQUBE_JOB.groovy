@@ -47,6 +47,8 @@ def sonarProperties ='''\
 
 			 }
 			 
+			 }
+			 
 			 
 			 
 static void addSONARQUBE_ROBOT(def job,String Name_Proyect, String Project_Version ){
@@ -89,25 +91,7 @@ def sonarProperties ='''\
 			 }
 
 
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
