@@ -123,55 +123,67 @@ folder('Latam' + '/' + Name_Proyect) {
 
 
     case "2":
-        //--------------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
 
-        println("Proyecto Robot")
+    println("Proyecto Robot")
 
-        for (String item: Ambientes) {
+    for (String item: Ambientes) {
 
-            folder('Latam' + '/' + Name_Proyect + '/' + item) {
-                description('Ambiente ' + item)
+        folder('Latam' + '/' + Name_Proyect + '/' + item) {
+            description('Ambiente ' + item)
+        }
+
+
+        //PIPELINE 
+        buildPipelineView('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PipeLine') {
+            selectedJob('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+        }
+
+        //--------------------------------------------------------------------------------------------------------------------------------------
+
+        // JOB GIT 
+        def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
+        GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
+
+        //--------------------------------------------------------------------------------------------------------------------------------------
+        // JOB BUILD 
+        def BUILD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD') {
+            customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+            logRotator(1, 5, 1, 5)
+            triggers {
+                upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
             }
+        }
+        BUILD_JOB.addBUILD_ROBOT(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
 
-
-            //PIPELINE 
-            buildPipelineView('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PipeLine') {
-                selectedJob('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+        //---------------------------------------------------------------------------------------------------------------------------------------
+        // JOB SONARQUBE 
+        def SONARQUBE = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_SONARQUBE') {
+            customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+            logRotator(1, 5, 1, 5)
+            triggers {
+                upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
             }
-			
-			//--------------------------------------------------------------------------------------------------------------------------------------
+        }
+        SONARQUBE_JOB.addSONARQUBE_ROBOT(SONARQUBE, Name_Proyect, Project_Version)
 
-            // JOB GIT 
-            def GIT = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT') {}
-            GIT_JOB.addGIT(GIT, project_description, Credential_SCM, Url_Git, branch_scm)
+        //---------------------------------------------------------------------------------------------------------------------------------------
 
-            //--------------------------------------------------------------------------------------------------------------------------------------
-            // JOB BUILD 
-            def BUILD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD') {
-                customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
-                logRotator(1, 5, 1, 5)
-                triggers {
-                    upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT', 'SUCCESS')
-                }
+
+        // JOB PMD 
+        def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
+            customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
+            logRotator(1, 5, 1, 5)
+            triggers {
+                upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
             }
-            BUILD_JOB.addBUILD_ROBOT(BUILD, jdk_x, propertiesFile, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home)
+        }
+        PMD_JOB.addPMD_ROBOT(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile, item, Patch_Workspace, correoJP)
 
-            //---------------------------------------------------------------------------------------------------------------------------------------
-			
-            // JOB PMD 
-            def PMD = job('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_PMD') {
-                customWorkspace(Patch_Workspace + 'Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_GIT')
-                logRotator(1, 5, 1, 5)
-                triggers {
-                    upstream('Latam' + '/' + Name_Proyect + '/' + item + '/' + Name_Proyect + '_BUILD', 'SUCCESS')
-                }
-            }
-            PMD_JOB.addPMD_ROBOT(PMD, jdk_x, Name_Proyect, Project_Version, deploy_stage, fileBuild, ant_home, propertiesFile, item, Patch_Workspace, correoJP)
-
-        } // Fin ciclo for
+    } // Fin ciclo for
 
 
-        break
+    break
 
     default:
         println("Valor no Encontrado")
