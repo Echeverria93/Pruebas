@@ -3,7 +3,7 @@ package utilities
 import javaposse.jobdsl.dsl.Context;
 
 
-public class BUILD_JOB implements Context {
+public class Prueba1 implements Context {
 
 
 
@@ -11,7 +11,7 @@ public class BUILD_JOB implements Context {
 static void Message(){
 
 print "La cadena insertada ha sido texto"
-print "Mauricio eres un putito"
+print "Mauricio eres un "·$%&/()"
 
 }
 
