@@ -11,7 +11,7 @@ public class Prueba1 implements Context {
 static void Message(){
 
 print "La cadena insertada ha sido texto"
-print "Mauricio eres un "·$%&/()"
+print "Mauricio eres un "
 
 }
 
