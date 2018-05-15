@@ -6,8 +6,7 @@ import jenkins.model.Jenkins;
 
 
 
-Prueba1addMessage(){
-}
+Prueba1.Message(){}
 
 
 
