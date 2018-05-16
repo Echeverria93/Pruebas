@@ -6,11 +6,8 @@ import jenkins.model.Jenkins;
 
 
 
-Prueba1.Mauricio()
+Mauricio()
 
-
-
-print "Mauricio eres un "
 
 
 
