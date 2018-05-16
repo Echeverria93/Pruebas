@@ -11,6 +11,14 @@ import javaposse.jobdsl.dsl.jobs.MatrixJob;
 
  def demo = new Prueba1()
  demo.Mauricio(true)
+ 
+ 
+ class Groovy {
+    static void main(String[] args) {
+        def demo = new Demo()
+        demo.a(true)
+    }
+}
 
 
 
