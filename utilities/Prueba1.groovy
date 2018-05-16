@@ -13,13 +13,7 @@ print "La cadena insertada ha sido texto"
 
 }
 
-    public void a(boolean a){
-        System.out.println("boolean was called");
-    }
 
-    public void a(Object a){
-        System.out.println("Object was called");
-    }
 
 
 

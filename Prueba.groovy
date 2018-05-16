@@ -7,18 +7,14 @@ import javaposse.jobdsl.dsl.jobs.MatrixJob;
 
 
 
-//Prueba1.Mauricio(true)
+Prueba1.Mauricio(true)
 
- def demo = new Prueba1()
- demo.Mauricio(true)
+      System.out.println("boolean was called");
+
+
  
  
- class Groovy {
-    static void main(String[] args) {
-        def demo = new Prueba1()
-        demo.a(true)
-    }
-}
+
 
 
 
