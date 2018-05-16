@@ -15,7 +15,7 @@ import javaposse.jobdsl.dsl.jobs.MatrixJob;
  
  class Groovy {
     static void main(String[] args) {
-        def demo = new Demo()
+        def demo = new Prueba1()
         demo.a(true)
     }
 }
