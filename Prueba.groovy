@@ -9,7 +9,7 @@ import javaposse.jobdsl.dsl.jobs.MatrixJob;
 
 Prueba1.Mauricio(true)
 
-      System.out.println("boolean was called");
+ .println("boolean was called");
 
 
  
