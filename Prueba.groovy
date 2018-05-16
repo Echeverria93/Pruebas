@@ -10,7 +10,7 @@ Prueba1.Mauricio()
 
 
 print "La cadena insertada ha sido texto"
-print "Mauricio eres un "
+print "n\ Mauricio eres un "
 
 
 
