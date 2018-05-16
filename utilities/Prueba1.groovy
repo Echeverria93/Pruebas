@@ -7,7 +7,7 @@ import javaposse.jobdsl.dsl.jobs.MatrixJob;
 public class Prueba1 implements Context {
 
 
- void Mauricio(){
+ static void Mauricio(boolean a){
 
 print "La cadena insertada ha sido texto"
 

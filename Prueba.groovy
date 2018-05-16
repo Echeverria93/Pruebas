@@ -7,7 +7,10 @@ import javaposse.jobdsl.dsl.jobs.MatrixJob;
 
 
 
-Prueba1.Mauricio()
+Prueba1.Mauricio(true)
+
+ //def demo = new Prueba1()
+       // demo.Mauricio(true)
 
 
 
