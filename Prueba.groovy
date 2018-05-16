@@ -9,8 +9,8 @@ import jenkins.model.Jenkins;
 Prueba1.Mauricio()
 
 
-print "La cadena insertada ha sido texto"
-print "n\ Mauricio eres un "
+
+print "Mauricio eres un "
 
 
 
